@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html style="height:100%">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>极光数学助手</title>
+
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/jquery-2.1.4.min.js"></script>
+
+    <meta charset="utf-8" />
+
+</head>
+
+<body style="margin:0px;padding:0px">
+  
+    <script>
+
+        $(function () {
+            $(window).scroll(function() {
+                $(window.scr)
+            })
+
+            $("#a2").mouseenter(function () {
+                //   alert("aaaaa");
+                $("#a1").css("background", "#ffffff");
+                $("#a2").css("color", "#000");
+            }).mouseleave(function () {
+                $("#a1").css("background", "transparent");
+                $("#a2").css("color", "#ffffff");
+            }).mouseup(function () {
+      
+            });
+            $("#a4").mouseenter(function () {
+            
+                $("#a3").css("background", "#ffffff");
+                $("#a4").css("color", "#000");
+            }).mouseleave(function () {
+                $("#a3").css("background", "transparent");
+                $("#a4").css("color", "#ffffff");
+            }).mouseup(function () {
+    
+            });
+        });
+
+    </script>
+
+
+    <img src="images/jiguang.jpg"  style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:-1" />
+
+
+    <div id="main">
+        
+        <spans style="margin-top:3%" id="logo"> ∞</spans>
+
+
+
+        <p style="color: rgb(0, 0, 0); font-size: 35px;">极光数学助手</p>
+        <p style="color: rgb(255, 255, 255); font-size: 30px;">为节省您的时间而设计</p>
+        <p style="color: rgb(255, 255, 255); font-size: 30px;">数学解题应用</p>
+
+        <br />
+        <p style="color: #9783b9; font-size: 15px; position:absolute;bottom:40px;width:100%"></p>
+       
+        <div class="waiceng" style="left:40%">
+            <div class="zhongceng" id="a1" style="background-color: transparent;">
+                <a class="neiceng" id="a2" href="do.html" style="text-decoration:none;color: rgb(255, 255, 255);">立即体验</a>
+            </div>
+
+        </div>
+
+
+        <div class="waiceng" style="right:35%">
+            <div class="zhongceng" id="a3" style="background-color: transparent;">
+                <a class="neiceng" href="helphtml.html" id="a4" style="text-decoration:none;color: rgb(255, 255, 255);">关于</a>
+            </div>
+        </div>
+
+      
+    </div>
+  
+   
+</body>
+</html>

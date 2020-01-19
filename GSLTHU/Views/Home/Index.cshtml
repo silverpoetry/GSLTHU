@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "主页";
+}
+
+
+<style>
+    *, h1, h2 {
+        font-family: "Microsoft YaHei",Arial;
+    }
+</style>
+<p></p>
+<div class="jumbotron">
+    <h1>刘维承的主页</h1>
+    <p class="lead"> 你好！欢迎来到刘维承的主页.</p>
+    <p><a href="/Home/About" class="btn btn-primary btn-lg">网站介绍 &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4" style="border:#dddddd 3px solid;border-radius:5px">
+        <h2>中考倒计时</h2>
+        <p>
+            同学们，中考马上就要开始了，还没有紧迫感吗？这个App会时时刻刻提醒着你，为了中考而努力奋斗。
+        </p>
+
+        @for (int i = 0; i < 20; i++)
+        {
+
+
+            <span>@Html.Raw(i + "天过去了~")</span>
+        }
+
+        <p><a class="btn btn-default" href="/Home/Daojishi">去看看 &raquo;</a></p>
+
+    </div>
+
+
+</div>
+<br/>
+@foreach (var item in ViewBag.Filelist)
+{
+
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-4" style="border:#dddddd 3px solid;border-radius:5px">
+            <h2>@item</h2>
+           
+
+      
+            <p><a class="btn btn-default" href="@Html.Raw("/Home/Page/?id="+Url.Encode(item))">去看看 &raquo;</a></p>
+
+        </div>
+
+
+    </div>
+    <br/>
+
+}
+
+@*@Styles.Render("~/Css/index.css")*@
+
+@*@Scripts.Render("~/Scripts/index.js");*@
+@*<div id="back">
+        <div id="cont">
+
+            <p>刘维承的个人网站</p>
+            <br/>
+            <p>Via@不朽的代码诗</p>
+            <p>&copy;@DateTime.Now.Year</p>
+        </div>
+    </div>*@
+@*<div id="domover">
+
+         <div id="divcircle" class="divcircle"/>
+
+        <div class="divback"> </div>
+
+
+        <div id="divCircleContent">Z</div>
+        <div id="divzhezhao" />
+
+    </div>*@
+
+
+
+
+
+
+

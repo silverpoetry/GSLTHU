@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "码云";
+}
+
+<h2>码云</h2>
+<div class="row">
+    <div  style="border:#dddddd 3px solid;border-radius:5px">
+        <h2>文件列表</h2>
+        <hr />
+        <table>
+            
+            @foreach (var item in ViewBag.names)
+            {
+            <tr style="border-bottom:solid 1px">
+                <td style="min-width:500px">@item </td>
+                <td> <a class="btn btn-default" href='@Url.Action("Download", "Cloud", new { fileName = item })'>下载</a></td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+<br />
+<div class="row" style="border:#dddddd 3px solid;border-radius:5px">
+    <div style="margin:30px">
+        <form  action='@Url.Action("Upload", "Cloud")' method="post" enctype="multipart/form-data">
+            <p> <input id="file" type="file" name="file" />  <input class="btn" type="submit" value="提交" /></p>
+        </form>
+    </div>
+</div>
+

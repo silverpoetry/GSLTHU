@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "DaoJiShi";
+}
+<!doctype html>
+<html>
+<head >
+    <title >中考倒计时</title>
+    @Styles.Render("~/Content/css")
+    <style>
+        * {
+            font-family: "Microsoft YaHei",Arial;
+            font-size:x-large;
+        }
+
+        body {
+            margin: 0px;
+            -moz-animation: doani 40s infinite;
+            -o-animation: doani 40s infinite;
+            -webkit-animation: doani 40s infinite;
+            animation: doani 40s infinite;
+        }
+
+        #outerdiv {
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            left:0px;
+
+            display: table;
+            position:fixed;
+        }
+
+            #outerdiv > div {
+                display: table-cell;
+                vertical-align: middle;
+                /*配合可以居中*/
+                text-align: center;
+            }
+
+        .red {
+            color: red;
+        }
+
+        .big {
+            font-size: xx-large;
+            font-weight: bold;
+        }
+
+        .green {
+            color: green;
+        }
+
+        .blue {
+            color: Highlight;
+        }
+
+        @@keyframes doani {
+            0% {
+                background-color: palevioletred;
+            }
+
+            20% {
+                background-color: orange;
+            }
+
+            40% {
+                background-color: chocolate;
+            }
+
+            60% {
+                background-color: crimson;
+            }
+
+            80% {
+                background-color: deepskyblue;
+            }
+
+            100% {
+                background-color: darkseagreen;
+            }
+        }
+
+        @@-moz-keyframes doani {
+            0% {
+                background-color: palevioletred;
+            }
+
+            20% {
+                background-color: orange;
+            }
+
+            40% {
+                background-color: chocolate;
+            }
+
+            60% {
+                background-color: crimson;
+            }
+
+            80% {
+                background-color: deepskyblue;
+            }
+
+            100% {
+                background-color: darkseagreen;
+            }
+        }
+
+        @@-webkit-keyframes doani {
+            0% {
+                background-color: palevioletred;
+            }
+
+            20% {
+                background-color: orange;
+            }
+
+            40% {
+                background-color: chocolate;
+            }
+
+            60% {
+                background-color: crimson;
+            }
+
+            80% {
+                background-color: deepskyblue;
+            }
+
+            100% {
+                background-color: darkseagreen;
+            }
+        }
+    </style>
+</head>
+
+
+</html>
+
+
+<div id="outerdiv">
+    <div>
+    @{
+        DateTime dt = new DateTime(2016, 6, 10);
+        TimeSpan diff = dt - DateTime.Now;
+        int i = Convert.ToInt32(diff.TotalDays);
+     }
+        今天是 <span class="blue">@DateTime.Now.Year </span> 年<span class="green"> @DateTime.Now.Month </span>月<span class="red"> @DateTime.Now.Day </span >日
+        <br>
+        距中考还有<span class="big red"> @i </span>天！
+      
+
+    </div>
+    <a class="btn btn-primary" href="/Home/Index" style="position:fixed;bottom:5px;right:5px">回到主页</a>
+
+</div>
+

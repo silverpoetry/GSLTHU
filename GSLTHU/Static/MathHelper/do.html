@@ -1,0 +1,437 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>极光数学助手</title>
+
+    <!--禁用页面缓存-->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!--引入页面样式表-->
+    <link rel="stylesheet" href="css/do.css">
+    <!--Bootstrap4库-->
+    <link href="css/bootstrap4.css" rel="stylesheet" />
+     <!--方程解算菜单-->
+    <link href="css/component.css" rel="stylesheet" />
+    <link href="css/default.css" rel="stylesheet" />
+    <style>
+        
+.btn-primary-outline, .btn-success-outline, .btn-danger-outline {
+    margin: 0 30px;
+}
+
+.row {
+    margin-top: 30px;
+}
+
+.res {
+    width: 50%;
+    margin: 30px auto;
+    border: solid 1px rgb(0, 127, 255);
+    border-radius: 10px;
+    height: 80px;
+    font-size: large;
+}
+
+.ct {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.col-3 {
+    float: left;
+    width: 27.33%;
+    margin: 20px 3%;
+    position: relative;
+}
+
+.col-max {
+    float: left;
+    width: 100%;
+    position: relative;
+}
+    </style>
+  
+   
+</head>
+<body>
+
+    <!--背景音乐-->
+    <audio autoplay loop src="music/background.mp3"></audio>
+
+    <!--背景-->
+    <div id="container" class = "ct">
+        <div id="output" class="ct">
+        </div>
+
+    </div>
+    <!--脉冲菜单小球-->
+    <div id="domover" style="width:80px; height: 80px; bottom: 30px; right: 30px;">
+
+        <div id="divcircle" class="divcircle">
+
+            <div class="divback"> </div>
+
+
+            <div id="divCircleContent" style="line-height: 40px; font-size: 40px;">∞</div>
+            <div id="divzhezhao">
+
+            </div>
+        </div>
+
+    </div>
+    <!--主面板半透明遮罩-->
+    <div id="back">
+
+    </div>
+
+
+    <!--主面板-->
+    <div id="content" class="contenter">
+        <!--计算器面板-->
+        <div id="calc"  style="position:absolute;width:100%;height:100%;">
+            <center>
+                <h3 style="margin-top:30px;font-family:'Microsoft YaHei'">极光电子复杂数学表达式计算器</h3>
+                <h6 style="color:#550777">特别提供对分数运算的支持</h6>
+            </center>
+
+            <!--输入框区-->
+            <div class="input-group" style="width:40%;margin:20px auto">
+
+                <input type="text" id="exp" class="form-control" placeholder="把你想算的东西尽情地写在这里吧！">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary btn-success" onclick="buttonclick()" type="button">Go！</button>
+                </span>
+                <span class="input-group-btn">
+                    <button id="help" class="btn btn-secondary; btn-info " onclick="getshili()" type="button">帮助</button>
+                </span>
+            </div>
+
+
+            <!--结果显示区-->
+            <center>
+                <div class="res" id="ress" style="display:none">
+                </div>
+            </center>
+          
+            <!--工具按钮组-->
+        <div style="margin-top:5%">
+
+            <div style="width:60% ;margin:  auto ">
+
+
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('+'); $('#exp').focus()" class="btn btn-primary-outline">+</button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('-'); $('#exp').focus()" class="btn btn-primary-outline">-</button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('*');$('#exp').focus()" class="btn btn-primary-outline">×</button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('/'); $('#exp').focus()" class="btn btn-primary-outline">÷</button>
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('π'); $('#exp').focus()" class="btn btn-success-outline">π</button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('^'); $('#exp').focus()" class="btn btn-success-outline">a<SUP>n</SUP> </button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="addtext('sqrt()'); $('#exp').focus()" class="btn btn-success-outline">√ </button>
+
+
+                    </div>
+                    <div class="col-sm-3">
+                        <button type="button" style="width:50px;font-weight:900;font-size:x-large" onclick="buttonclick()" class="btn btn-danger-outline">= </button>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <center>
+
+            <p id="tip" style="width:100%;position:absolute;text-align:center;bottom:0px;color:red">提示：点击右侧小圆球打开或关闭菜单</p>
+        </center>
+    </div>
+       <!--方程解算面板-->
+        <div id="fangcheng" style="position:absolute;width:100%;height:100%;display:none">
+          
+              <center>
+                <h3 style="margin:10px;font-family:'Microsoft YaHei'">方程解算器</h3>
+                  <div id="navouter" style="width:80em;position: absolute;  left: 29.5%;" class="clearfix">
+            
+                            <nav id="fangchengnav" class="nav">
+                          <ul>
+
+
+                              <li id="li01">
+                                  <a onclick="toogle(12)" href="#">
+                                      <span class="icon">
+                                          <i aria-hidden="true" class="icon-portfolio"></i>
+                                      </span>
+                                      <span>一元二次方程</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a onclick="toogle(11)" href="#">
+                                      <span class="icon">
+                                          <i aria-hidden="true" class="icon-blog"></i>
+                                      </span>
+                                      <span>一元一次方程</span>
+                                  </a>
+                              </li>
+
+                              <li>
+                                  <a onclick="toogle(21)" href="#">
+                                      <span class="icon">
+                                          <i aria-hidden="true" class="icon-portfolio"></i>
+                                      </span>
+                                      <span>二元一 次方程</span>
+                                  </a>
+                              </li>
+
+                          </ul>
+                      </nav>
+                      <div style="text-align:center;clear:both">
+                          <br>
+                          <script src="/gg_bd_ad_720x90.js" type="text/javascript"></script>
+                          <script src="/follow.js" type="text/javascript"></script>
+                      </div>
+                  </div>
+                  <div style="margin-top:16em">
+                      <div id="f11" style="border:2px dashed grey;padding:20px">
+
+
+                          <span style="font-size:large; color :black;font-weight:600">一元一次方程</span>
+                          <div style="width:30%;margin-bottom:15px" class="input-group">
+
+                              <input id="a11" type="text" class="form-control" placeholder="系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">x</span>
+
+                              <span class="input-group-addon" id="basic-addon1">=</span>
+                              <input id="b11" type="text" class="form-control" placeholder="常数" aria-describedby="basic-addon1">
+                              <span class="input-group-btn">
+                                  <button onclick="solve(11)" style="margin-left:30px" class="btn btn-success" type="button">Go!</button>
+                              </span>
+                          </div>
+                      </div>
+                      <div id="f12" style="display:none;border:2px dashed grey;padding:20px" >
+                          <span style="font-size:large;color:black;font-weight:600">一元二次方程</span>
+                          <div style="width:50%;margin-bottom:15px" class="input-group">
+                              <input id="a12" type="text" class="form-control" placeholder="二次项系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">x<SUP>2</SUP>+</span>
+                              <input id="b12" type="text" class="form-control" placeholder="一次项系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">x+</span>
+                              <input id="c12" type="text" class="form-control" placeholder="常数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">=0</span>
+                              <span class="input-group-btn">
+                                  <button style="margin-left:30px" onclick="solve(12)" class="btn btn-success" type="button">Go!</button>
+                              </span>
+                          </div>
+                      </div>
+                      <div id="f21" style="display:none;border:2px dashed grey;padding:20px">
+                          <span style="font-size:large;color:black;font-weight:600">二元一次方程</span>
+                          <div style="width:50%;mar" class="input-group-sm input-group">
+                              <input id="a21" type="text" class="form-control" placeholder="x系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">x+</span>
+                              <input id="b21" type="text" class="form-control" placeholder="y系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">y</span>
+
+                              <span class="input-group-addon" id="basic-addon1">=</span>
+                              <input id="c21" type="text" class="form-control" placeholder="常数" aria-describedby="basic-addon1">
+                              <span class="input-group-btn">
+                                  <button style="margin-left:30px;" onclick="solve(21)" class="btn btn-success" type="button">Go!</button>
+                              </span>
+                          </div>
+                          <div style="width:50%;" class="input-group input-group-sm">
+                              <input type="text" id="d" class="form-control" placeholder="x系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">x+</span>
+                              <input type="text" id="e" class="form-control" placeholder="y系数" aria-describedby="basic-addon1">
+                              <span class="input-group-addon" id="basic-addon1">y</span>
+
+                              <span class="input-group-addon" id="basic-addon1">=</span>
+                              <input type="text" id="f" class="form-control" placeholder="常数" aria-describedby="basic-addon1">
+                              <span class="input-group-btn">
+                                  <button style="margin-left:30px;visibility:hidden" class="btn btn-success" type="button">Go!</button>
+                              </span>
+                          </div>
+                      </div>
+                  </div>
+      
+
+                <!--结果显示区域-->
+                <div class="res" id="solve" style="margin-top:80px; min-height:100px;display:none"></div>
+            </center>
+                
+
+           
+
+        </div>
+        <!--进制转换面板-->
+        <div id="jinzhi" style="position:absolute;width:100%;height:100%;display:none">
+            <center>
+                <h3 style="margin-top:30px;font-family:'Microsoft YaHei'">进制转换器</h3>
+            </center> 
+
+            <div id="jinzhigroup" class="btn-group" style="margin-left:40%;margin-top:20px"  data-toggle="buttons">
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="btn2" value="2" autocomplete="off" > 2进制
+                </label>
+                <label class="btn btn-primary active">
+                    <input type="radio" name="options" id="btn10" value="10" autocomplete="off" checked> 10进制
+                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="btn8" value="8" autocomplete="off">8进制
+                                </label>
+                <label class="btn btn-primary">
+                    <input type="radio" name="options" id="btn16" value="16" autocomplete="off"> 16进制
+                </label>
+            </div>
+
+            <div class="input-group" style="width:40%;margin:0px auto">
+
+                <input type="text" id="jinzhi_input"  oninput="jinzhi_onchange()" class="form-control" placeholder="您输入的数字将会被自动转换！">
+                
+                
+            </div>
+        
+            <div class="res" style="height:auto;padding:20px;margin-top:9%">
+                <div style="font-weight:600">转换结果:</div><br>
+                   <table>
+                    <tr>
+                        <td>   <div style="margin:10px">2进制:</div></td>
+                        <td><span id="span_2" style="color:purple"></span></td>
+                    </tr>
+                       <tr>
+                           <td>   <div style="margin:10px">8进制:</div></td>
+                           <td><span id="span_8" style="color:purple"></span></td>
+                       </tr>
+                       <tr>
+                           <td>   <div style="margin:10px">10进制:</div></td>
+                           <td><span id="span_10" style="color:purple"></span></td>
+                       </tr>
+                       <tr>
+                           <td>   <div style="margin:10px">16进制:</div></td>
+                           <td><span id="span_16" style="color:purple"></span></td>
+                       </tr>
+                </table>
+           
+              
+            </div>
+
+        </div>
+
+
+
+   
+    </div>
+    <script>
+       
+    </script>
+    <!--菜单-->
+    <div id="menu">
+        <p> 菜单</p>
+        <p>
+            <div id="计算器" class="bluebutton" style="cursor:pointer;width:95%;margin-left:2.5%"> <span style="cursor:pointer">计算器</span>  </div>
+        </p>
+        <p>
+            <div id="方程" class="bluebutton" style="cursor:pointer;background:aquamarine;width:95%;margin-left:2.5%"><span style="cursor:pointer">方程解算</span></div>
+        </p>
+        <p>
+            <div id="进制转换" class="bluebutton" style="cursor:pointer;background:aquamarine;width:95%;margin-left:2.5%"><span style="cursor:pointer">进制转换</span></div>
+        </p>
+    
+        <p>
+            <div class="bluebutton" style="background-color:chartreuse;width:95%;margin-left:2.5%">
+                <a href="helphtml.html" target="_blank" style="cursor:pointer;text-decoration:none; color:black">帮助</a>
+            </div>
+        </p>
+        <p>
+            <div class="bluebutton" style="background:darkgray;width:95%;margin-left:2.5%">
+                <a href="index.html" target="_blank" style="cursor:pointer;text-decoration:none;color:black">主页</a>
+            </div>
+        </p>
+    </div>
+
+
+
+
+    <!--引入jquery库-->
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <!--引入Bootstrap4.0库-->
+    <script src="js/bootstrap.js"></script>
+    <!--引入modernizr库-->
+    <script src="js/modernizr.custom.js"></script>
+
+
+    <!--背景显示核心-->
+    <script src="js/background.js"></script>
+    <!--分数运算核心-->
+    <script src="js/calc.js"></script>
+    <!--方程解算核心-->
+    <script src="js/fangcheng.js"></script>
+    <!--进制转换核心-->
+    <script src="js/jinzhi.js"></script>
+
+    <!--脉冲小球控制-->
+    <script src="js/ball.js"></script>
+    <!--菜单面板的控制-->
+    <script src="js/do_menu.js"></script>
+
+
+    <!--计算器界面的功能实现-->
+    <script src="js/do_calc.js"></script>
+    <!--解方程界面的功能实现-->
+    <script src="js/do_fangcheng.js"></script>
+    <script>
+        
+    //处理元素的居中问题
+        function fangnchengresize() {
+            var dw = window.innerWidth;
+            var l1 = (dw - $("#content").outerWidth()) / 2;
+            var l = (dw - $("#li01").outerWidth() * 3) / 2 -l1;
+         
+            $("#navouter").css("left", l + "px");
+        }
+        function jinzhiresize() {
+          
+            var dw = window.innerWidth;
+            var l1 = (dw - $("#content").outerWidth()) / 2;
+           
+            var l = (dw - $("#jinzhigroup").outerWidth()) / 2 - l1;
+            $("#jinzhigroup").css("margin-left", l + "px");
+        }
+      
+    </script>
+</body>
+</html>

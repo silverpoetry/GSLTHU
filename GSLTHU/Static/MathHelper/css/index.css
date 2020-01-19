@@ -1,0 +1,68 @@
+﻿  *{
+        
+        font-family: 'Microsoft YaHei' ;
+
+        }
+        #main p {
+        text-align:center;
+        
+        
+        }
+        #logo {
+            margin: 0 auto 30px;
+            background-color: transparent;
+            border: 1px solid #04D1FF;
+            width: 144px;
+            height: 144px;
+            font-size: 108px;
+            line-height: 140px;
+            display: block;
+            color: #DCC513;
+            text-align: center;
+            border-radius: 50%;
+        }
+        #main {
+           position:absolute;
+        margin:0px;
+        width:100%;
+        height:100%;
+        /*background:url("images/240383-1410150J35550.jpg") repeat;*/
+        background-size:100%; 
+        
+        }
+        .waiceng {
+            position: absolute;
+            width: 10%;
+            height: 45px;
+            margin-left: -70px;
+            top: 74%;
+            opacity: 1;
+            z-index: 4;
+            cursor: pointer;
+        }
+
+        .zhongceng {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            opacity: 1;
+            top: 0;
+            background-color: transparent;
+            border: solid 2px #FFF;
+            border-radius: 10px;
+        }
+
+        .neiceng {
+            position: absolute;
+            z-index: 1;
+            -webkit-font-smoothing: antialiased;
+            text-align: center;
+            font-size: 18px;
+            line-height: 45px;
+            height: 45px;
+            color: #FFF;
+            font-family: 'Microsoft YaHei';
+            width: 80%;
+            margin-left: 10%;
+        }

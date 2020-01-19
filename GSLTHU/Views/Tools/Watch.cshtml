@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Watch";
+}
+
+
+<h2>Watch</h2>
+@{List<GSLTHU.Data.LikeSet> l = (List<GSLTHU.Data.LikeSet>)ViewBag.List; }
+<table  class="table">
+@foreach (GSLTHU.Data.LikeSet i in l)
+{
+    <tr><td>@i.Name</td><td>@i.Count</td></tr>
+}
+</table>

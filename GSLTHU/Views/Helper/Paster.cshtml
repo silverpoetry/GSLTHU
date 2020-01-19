@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Paster";
+}
+
+<h2>Paster</h2>
+<div class="container">
+    <table class="table">
+        @{int i = 0; }
+       @foreach (var item in ViewBag.data)
+            {
+          
+            <tr><td style="border-bottom:1px solid grey">@item</td><td><a class="btn btn-default" href="/Helper/Paster/?deleteid=@(i++)">删除</a></td></tr>
+          
+       }
+    </table>
+</div>
+<form class="form-inline">
+   
+        <input type="text" class="form-control" name="id" id="id" placeholder="于此输入跨端剪贴文本"/>
+        <button type="submit" class="btn btn-default" >提交</button> 
+  
+</form>

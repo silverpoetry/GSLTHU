@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Toupiao";
+
+
+}
+
+
+<h2>Toupiao</h2>
+<h2>ALL @ViewBag.All</h2>
+<h2>is @ViewBag.Island</h2>
+<form action="/Home/Toupiao" method="get">
+    岛屿重要：
+    <input type="radio" name="island" value="1" checked="checked">
+    <br />
+    生命重要:
+    <input type="radio" name="island" value="2">
+    <br />
+    <input type="submit" value="提交">
+
+</form>

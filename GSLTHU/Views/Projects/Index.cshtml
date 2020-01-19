@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!doctype html>
+<html>
+<head>
+    <title>暑假项目介绍</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    @Styles.Render("~/Content/css")
+   
+    @Styles.Render("~/Css/ProjectIndex.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</head>
+
+<body>
+
+
+    <main id="content" tabindex="-1">
+        <div class="container" style="border-bottom:2px solid aqua">
+            <span id="logo">Z</span>
+
+
+            <p style="font-size:30px; color: #ffffff;">2016年暑期项目规划</p>
+            <p style="font-size:30px; color: #ffffff;">包含狂拽酷炫吊炸天的内容和高度机密的神秘计划</p>
+
+            <p style="font-size:50px;color: #0C4A77;margin:20px;">一睹为快！</p>
+
+            <p id="little">By 不朽的代码诗（刘维承）</p>
+        </div>
+    </main>
+    <main style=" background-color:blue; backgroundimage" tabindex="-1" id="content2">
+        <div class="container">
+            <p style="color: black;margin-left: -60px;text-align:left;">1.一个演绎青春的网站 梦想酝酿</p>
+            <div class="row">
+                <div class="col-sm-12  col-md-8">
+                    <p>假日里<br>你的心 期盼着 向往着</p>
+                    <p style= "color:aqua;">哪里 能找到自己的天地</p>
+                    <p style="color: aqua;" >你开始不适应、当你身心俱自由</p>
+                    <p>你陷入沉思 陷入迷惘 陷入无助的痛苦<br>别害怕 你要勇敢面对它</p>
+                    <p style="color:#75BDFD;">这世界 灿烂热烈<br>用心体会它的美，把它印在心里！</p><p>
+                    </p><p>这个假日<br> 梦想和现实并在 喜悦与汗水交织  </p>
+                    <p style="color:#A2FF7C; ">人生路上的所见所感<br>我要在这个网站  写下来</p><p>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                   
+                    <img style="width:130%;height:130%" src="@Url.Content("~/Images/d1.png")" /></div>
+            </div>
+        </div>
+    </main>
+    <main style=" background-color:blue; backgroundimage" tabindex="-1" id="content3">
+        <div class="container">
+            <p style="color: black;margin-left: -60px;text-align:left;">2.四轴无人机 梦想启航 </p>
+            <div class="col-sm-6 col-md-4">
+
+                <img style="width:130%;height:130%" src="@Url.Content("~/Images/fly.png")" />
+            </div>
+             <div class="col-sm-12  col-md-8" style="text-align:right ;padding-right:50px">
+                <p>你是否<br>向往着蓝天</p>
+                <p style="color:aqua;">那里的一切是如此的渺远</p>
+                <p style="color: aqua;">风清云淡  鸟儿共我盘旋</p>
+                 <p style="color:#A2FF7C; ">一瞬间 想要去很远<br> 带你去看繁华世间</p>
+
+                <p style="color:#75BDFD;">就让这四轴飞行器<br>载着的梦想启航</p><p>
+                </p><p>在那高远的蓝天上<br> 遥望人生  </p>
+                
+                </p>
+            </div>
+           
+        </div>
+        </div>
+    </main>
+    <main tabindex="-1" id="content4" >
+       <p style="color:black; font-size:40px">机密项目 代号ALP9</p>
+        <P >它不惊天动地 也不震撼人心</P>
+        <p>但它很重要</p>
+        <p>成功率不高 而且是从未涉足的领域</p>
+        <p>如果失败，此项目永不解封</p>
+       
+        <p><img style="width:200px ;height:200px"  src="/Images/lock.png" /></p>
+        <p style="color:aquamarine">&copy; @DateTime.Now.Year - 不朽的代码诗</p>
+       </main>
+
+
+
+
+
+
+</body>
+</html>

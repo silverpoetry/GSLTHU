@@ -1,0 +1,21 @@
+﻿
+
+
+<h2>@ViewBag.Title</h2>
+<div class="container">
+    <table class="table">
+        @{int i = 0; }
+        @foreach (var item in ViewBag.Data)
+        {
+
+            <tr><td style="border:1px solid grey;border-radius:3px">@item</td><td><a class="btn btn-default" href="/Helper/List/?id=@ViewBag.Title&deleteid=@(i++)">删除</a></td></tr>
+
+        }
+    </table>
+</div>
+<form class="form-inline">
+    <input type="hidden" name="id" value="@ViewBag.Title" />
+    <input type="text" class="form-control"  name="addthing" placeholder="添加一项" />
+    <button type="submit" class="btn btn-default">提交</button>
+
+</form>

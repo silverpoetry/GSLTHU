@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Bird";
+}
+
+<h2>Wanna a bird?</h2>
+首先我们要删除一个人<del><mark>@ViewBag.Id</mark></del>
+
+<p> 号，下面我们来画鸟</p>
+<button type="button" id=" button" class="btn btn-primary">画的真好！</button>
+<div id="aa" class="jumbotron">
+
+    <img src="~/Images/timg.jpg" />
+
+</div>
+<script>
+    $(function myfunction() {
+        $("#aa").css("visibility", "hidden");
+        $("#button").click(function() {
+            $("#aa").show(1);
+        })
+    })
+
+    </script>
+
+
+
+
+
