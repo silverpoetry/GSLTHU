@@ -44,9 +44,9 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 01/12/2020 21:53:40
+-- Date Created: 01/20/2020 22:21:03
 
--- Generated from EDMX file: C:\Users\weich\source\repos\GSLTHU\GSLTHU\Models\MyDB.edmx
+-- Generated from EDMX file: C:\Users\weich\Desktop\Projects\GSLTHU\GSLTHU\Models\MyDB.edmx
 -- Target version: 3.0.0.0
 
 -- --------------------------------------------------
@@ -72,11 +72,23 @@ SET foreign_key_checks = 1;
 -- --------------------------------------------------
 
 
-CREATE TABLE `PasteNoteSet`(
+CREATE TABLE `PasteNotes`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Text` longtext NOT NULL);
 
-ALTER TABLE `PasteNoteSet` ADD PRIMARY KEY (`Id`);
+ALTER TABLE `PasteNotes` ADD PRIMARY KEY (`Id`);
+
+
+
+
+
+CREATE TABLE `ChatMessages`(
+	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
+	`RoomId` int NOT NULL, 
+	`Text` longtext NOT NULL, 
+	`UserName` longtext NOT NULL);
+
+ALTER TABLE `ChatMessages` ADD PRIMARY KEY (`Id`);
 
 
 

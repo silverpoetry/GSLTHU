@@ -29,7 +29,7 @@ namespace GSLTHU.Controllers
 
                 //内容非空则代表添加内容
                 //data.Add(id);
-                myweb.PasteNoteSet.Add(p);
+                myweb.PasteNotes.Add(p);
                 myweb.SaveChanges();
     
             }
@@ -41,7 +41,7 @@ namespace GSLTHU.Controllers
                 myweb.Entry(p).State = System.Data.Entity.EntityState.Deleted;
                 myweb.SaveChanges();
             }
-           var dtlst = (from a in myweb.PasteNoteSet select a).ToList() ;
+           var dtlst = (from a in myweb.PasteNotes select a).ToList() ;
            // System.IO.File.WriteAllLines(Server.MapPath("~/Storage/paster.txt"),data);
             if (deleteid != null||!string.IsNullOrEmpty(id)) Response.Redirect("~/Helper/Paster");
             return View(dtlst);

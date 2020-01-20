@@ -17,7 +17,7 @@ namespace GSLTHU.Controllers
         // GET: PasteNotes
         public ActionResult Index()
         {
-            return View(db.PasteNoteSet.ToList());
+            return View(db.PasteNotes.ToList());
            
         }
 
@@ -28,7 +28,7 @@ namespace GSLTHU.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PasteNote pasteNote = db.PasteNoteSet.Find(id);
+            PasteNote pasteNote = db.PasteNotes.Find(id);
             if (pasteNote == null)
             {
                 return HttpNotFound();
@@ -51,7 +51,7 @@ namespace GSLTHU.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.PasteNoteSet.Add(pasteNote);
+                db.PasteNotes.Add(pasteNote);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -66,7 +66,7 @@ namespace GSLTHU.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PasteNote pasteNote = db.PasteNoteSet.Find(id);
+            PasteNote pasteNote = db.PasteNotes.Find(id);
             if (pasteNote == null)
             {
                 return HttpNotFound();
@@ -97,7 +97,7 @@ namespace GSLTHU.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PasteNote pasteNote = db.PasteNoteSet.Find(id);
+            PasteNote pasteNote = db.PasteNotes.Find(id);
             if (pasteNote == null)
             {
                 return HttpNotFound();
@@ -110,8 +110,8 @@ namespace GSLTHU.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PasteNote pasteNote = db.PasteNoteSet.Find(id);
-            db.PasteNoteSet.Remove(pasteNote);
+            PasteNote pasteNote = db.PasteNotes.Find(id);
+            db.PasteNotes.Remove(pasteNote);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
