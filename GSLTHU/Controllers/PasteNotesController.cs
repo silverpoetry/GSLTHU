@@ -18,6 +18,7 @@ namespace GSLTHU.Controllers
         public ActionResult Index()
         {
             return View(db.PasteNoteSet.ToList());
+           
         }
 
         // GET: PasteNotes/Details/5

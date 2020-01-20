@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using GSLTHU.Models;
 namespace GSLTHU.Controllers
 {
    
     public class HelperController : Controller
     {
+        mywebEntities myweb = new mywebEntities();
+
         // GET: Helper
         public ActionResult Index()
         {
@@ -17,23 +19,32 @@ namespace GSLTHU.Controllers
         }
         public ActionResult Paster(string id,int? deleteid)
         {
-            var data = System.IO.File.ReadLines(Server.MapPath("~/Storage/paster.txt")).ToList();
+
+           // var data = System.IO.File.ReadLines(Server.MapPath("~/Storage/paster.txt")).ToList();
             
             if (!string.IsNullOrEmpty(id))
             {
-                data.Add(id);
-                
-                
+                PasteNote p = new PasteNote();
+                p.Text = id;
+
+                //内容非空则代表添加内容
+                //data.Add(id);
+                myweb.PasteNoteSet.Add(p);
+                myweb.SaveChanges();
+    
             }
             if(deleteid!=null)
             {
-                data.RemoveAt(deleteid.Value);
-                
+                //删除内容
+                PasteNote p = new PasteNote();
+                p.Id = (int)deleteid;
+                myweb.Entry(p).State = System.Data.Entity.EntityState.Deleted;
+                myweb.SaveChanges();
             }
-            ViewBag.data = data;
-            System.IO.File.WriteAllLines(Server.MapPath("~/Storage/paster.txt"),data);
+           var dtlst = (from a in myweb.PasteNoteSet select a).ToList() ;
+           // System.IO.File.WriteAllLines(Server.MapPath("~/Storage/paster.txt"),data);
             if (deleteid != null||!string.IsNullOrEmpty(id)) Response.Redirect("~/Helper/Paster");
-            return View();
+            return View(dtlst);
         }
      
         public string API_GetPaste()

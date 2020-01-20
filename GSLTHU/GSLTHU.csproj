@@ -155,6 +155,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChatroomController.cs" />
     <Compile Include="Controllers\CloudController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
@@ -452,6 +453,7 @@
     <None Include="Static\MathHelper\Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="Views\Chatroom\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
