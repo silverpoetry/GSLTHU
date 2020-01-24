@@ -40,6 +40,7 @@
 
 
     } else {
+        $(".divcircle").css({ opacity: '0.3' });
         circle.css("width", "100px").css("height", "100px");
         ismoblie = false;
         $("#domover").css({ top: "10px", left: "10px" });
@@ -47,7 +48,7 @@
         $("#divzhezhao").mousedown( function () {
             $(".divcircle").css("opacity", "0.8");
         }).mouseup( function () {
-            $(".divcircle").css("opacity", "1");
+            $(".divcircle").css("opacity", "0.3");
         });
       
     }

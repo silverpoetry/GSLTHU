@@ -1,7 +1,27 @@
 ﻿
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "暗号";
 }
 
-<h2>Index</h2>
+<h2>暗号</h2>
 
+<br />
+
+<form action="~/ChatRoom/Room">
+    <p>我们的暗号是：
+        <input type="text" name="id" class="input-sm" id="id" />
+        <button type="submit" class="btn btn-info">Go</button>
+    </p>
+
+</form>
+@section scripts{
+    
+   
+    <script>
+        $(document).ready(function () {
+            $("#id").focus();
+        });
+        
+    </script>    
+   }

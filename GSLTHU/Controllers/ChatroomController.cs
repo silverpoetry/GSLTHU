@@ -15,5 +15,14 @@ namespace GSLTHU.Controllers
         {
             return View();
         }
+        public ActionResult Room(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return View("Index");
+            }
+            ViewBag.RoomId = id;
+            return View();
+        }
     }
 }
