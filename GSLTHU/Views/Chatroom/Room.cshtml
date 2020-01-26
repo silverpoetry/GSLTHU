@@ -2,13 +2,20 @@
 @{
     ViewBag.Title = "Chat";
 }
-    <h2>@ViewBag.RoomId</h2>
+<h2>@ViewBag.RoomId </h2>
+<div id="layer" style="align-content:center;text-align:center;position:absolute;left:0px;top:0px;z-index:9999; width  :100%;height:100%;background:rgba(0,0,0,0.3)">
+
+    <p style="margin-top:100px;color:lightgoldenrodyellow">请输入您的身份：</p>
+    <input id="txtuname" onkeypress="if (event.keyCode == 13) $('#btnuname').click();" style="font-size:larger;background:rgba(0,0,0,0);color:aquamarine; border-style: none;border-bottom-style: solid;  border-bottom-width: thin; border-bottom-color: papayawhip;" />
+    <br />
+    <button id="btnuname" style="margin-top:20px" class="btn btn-info">确定</button>
+</div>
 <div class="container">
-    <input class="input-lg" type="text" id="message" />
+    <input class="input-lg" type="text" id="message" onkeypress='if (event.keyCode == 13) $("#sendmessage").click();' />
     <input class="btn btn-default" type="button" id="sendmessage" value="发送" />
     <span style="color:aqua;margin-left:20px" id="userinfo">goshi </span>
-    <input type="hidden" id="displayname" value="小透明"/>
-    <input type="hidden" id="roomid" value="@ViewBag.RoomId"/>
+    <input type="hidden" id="displayname" value="小透明" />
+    <input type="hidden" id="roomid" value="@ViewBag.RoomId" />
     <br />
     <ul id="discussion">
     </ul>
@@ -23,46 +30,52 @@
     <!--SignalR script to update the chat page and send messages.-->
     <script>
         $(function () {
-            
+
+
             // Reference the auto-generated proxy for the hub.
             var chat = $.connection.chatHub;
             // Create a function that the hub can call back to display messages.
             chat.client.addNewMessageToPage = function (name, message) {
                 // Add the message to the page.
-                $('#discussion').append('<li><strong>' + htmlEncode(name)
+                $('#discussion').prepend('<li><strong>' + htmlEncode(name)
                     + '</strong>: ' + htmlEncode(message) + '</li>');
             };
             chat.client.updateUsers = function (userlist) {
                 var uname = $("#displayname").val();
-                var disstr = "这里有:" + $("#displayname").val()+"(我)";
-                
+                var disstr = "这里有:" + $("#displayname").val() + "(我)";
+
                 for (var i in userlist) {
-                  //  $('#discussion').append('<li><strong>' + userlist[i] + '</strong>来一起聊天了  </li>');
-                    if (userlist[i]!=uname) {
+                    //  $('#discussion').append('<li><strong>' + userlist[i] + '</strong>来一起聊天了  </li>');
+                    if (userlist[i] != uname) {
                         disstr += '、' + userlist[i];
                     }
                 }
-            
+
                 $("#userinfo").text(disstr);
 
             };
             // Get the user name and store it to prepend to messages.
-          
-            $('#displayname').val(prompt('我的身份是：', ''));
-            // Set initial focus to message input box.
-            $('#message').focus();
-            // Start the connection.
-            $.connection.hub.start().done(function () {
-                //加入房间
-                chat.server.joinRoom($("#roomid").val(), $('#displayname').val());
+            $("#txtuname").focus();
+            $("#btnuname").click(function () {
+                $("#displayname").val($("#txtuname").val());
+                $("#layer").fadeOut();
+                $('#message').focus();
+                // Start the connection.
+                $.connection.hub.start().done(function () {
+                    //加入房间
+                    chat.server.joinRoom($("#roomid").val(), $('#displayname').val());
 
-                $('#sendmessage').click(function () {
-                    // Call the Send method on the hub.
-                    chat.server.send($('#displayname').val(), $('#message').val());
-                    // Clear text box and reset focus for next comment.
-                    $('#message').val('').focus();
+                    $('#sendmessage').click(function () {
+                        // Call the Send method on the hub.
+                        chat.server.send($('#displayname').val(), $('#message').val());
+                        // Clear text box and reset focus for next comment.
+                        $('#message').val('').focus();
+                    });
                 });
             });
+            //  $('#displayname').val(prompt('我的身份是：', ''));
+            // Set initial focus to message input box.
+
         });
         // This optional function html-encodes messages for display in the page.
         function htmlEncode(value) {

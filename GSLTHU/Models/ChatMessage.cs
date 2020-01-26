@@ -15,8 +15,8 @@ namespace GSLTHU.Models
     public partial class ChatMessage
     {
         public int Id { get; set; }
-        public int RoomId { get; set; }
         public string Text { get; set; }
         public string UserName { get; set; }
+        public string RoomId { get; set; }
     }
 }

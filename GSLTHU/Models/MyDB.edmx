@@ -21,9 +21,9 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RoomId" Type="int" Nullable="false" />
     <Property Name="Text" Type="longtext" Nullable="false" />
     <Property Name="UserName" Type="longtext" Nullable="false" />
+    <Property Name="RoomId" Type="longtext" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -45,9 +45,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoomId" Type="Int32" Nullable="false" />
           <Property Name="Text" Type="String" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" />
+          <Property Name="RoomId" Type="String" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -67,9 +67,9 @@
       <EntityTypeMapping TypeName="IsTypeOf(mywebModel.ChatMessage)">
         <MappingFragment StoreEntitySet="ChatMessages">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="Text" ColumnName="Text" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
