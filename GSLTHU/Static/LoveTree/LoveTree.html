@@ -1,0 +1,244 @@
+﻿<!doctype HTML>
+
+<html>
+<head>
+    <title>Hey</title>
+</head>
+<body>
+
+    <link href="css/default.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/jscex.min.js" type="text/javascript"></script>
+    <script src="js/jscex-parser.js" type="text/javascript"></script>
+    <script src="js/jscex-jit.js" type="text/javascript"></script>
+    <script src="js/jscex-builderbase.min.js" type="text/javascript"></script>
+    <script src="js/jscex-async.min.js" type="text/javascript"></script>
+    <script src="js/jscex-async-powerpack.min.js" type="text/javascript"></script>
+    <script src="js/functions.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/love.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/clipboard.js"></script>
+    <style>
+
+        * {
+            font-family: "微软雅黑";
+        }
+
+        #code {
+            font-size: 14px;
+            display: none;
+        }
+
+        .divcss5 {
+            width: 0px;
+            height: 0px;
+            line-height: 0px;
+            overflow: hidden;
+        }
+    </style>
+    <div id="main">
+        
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <font style="color:Highlight">
+                        <span class="say">故事开始以前，最初的那些春天</span><br>
+                        <span class="say"></span><br><span class="say">阳光洒在杨树上 风吹来 闪银光  </span><br>
+                        <span class="say"></span><br><span class="say"> 街道平静而温暖 钟走得好慢 </span><br>
+                        <span class="say"></span><br><span class="say">那是我还不识人生之味的年代</span><br>
+                        <span class="say"></span><br>
+
+                        <span class="say"></span><br><span class="say">我情窦还不开 你的衬衣如雪</span><br>
+                        <span class="say"></span><br><span class="say">盼着杨树叶落下 眼睛不眨</span><br>
+                        <span class="say"></span><br><span class="say">心里像有一些话 我们先不讲 等待着那将要盛装出场的未来</span><br>
+                        <span class="say"></span><br><span class="say">刘维承 ★ 韩雪纯-</span>
+                    </font>
+                </div>
+            </div>
+
+            <script>
+                var tih = $('#timehide').text();
+                var pd = $('#clock-box').text();
+                if (pd.indexOf('隐藏') >= 0) {
+                    $('#xy').hide();
+                } if (tih.indexOf('20') < 0) {
+                    $('#xy').hide();
+                }
+            </script>
+            <canvas width="1100" height="680" id="canvas"></canvas>
+            <!--这是恋爱时间计时器，因为用作作为表白网页，被其他人删去，在此复原-->
+            <div id="clock-box" style="display:none">
+                <div id="clock"></div>
+            </div>
+        </div>
+    </div>
+    <script></script>
+    <script>
+        (function () {
+            var canvas = $('#canvas');
+            if (!canvas[0].getContext) {
+                $("#error").show();
+                return false;
+            }
+            var width = canvas.width();
+            var height = canvas.height();
+
+            canvas.attr("width", width);
+            canvas.attr("height", height);
+            //具体见love.js注释
+            var opts = {
+                seed: {
+                    x: width / 2 - 20,
+                    color: "rgb(190, 26, 37)",
+                    scale: 2
+                },
+                branch: [
+                    [535, 680, 570, 250, 500, 200, 30, 100, [
+                        [540, 500, 455, 417, 340, 400, 13, 100, [
+                            [450, 435, 434, 430, 394, 395, 2, 40]
+                        ]],
+                        [550, 445, 600, 356, 680, 345, 12, 100, [
+                            [578, 400, 648, 409, 661, 426, 3, 80]
+                        ]],
+                        [539, 281, 537, 248, 534, 217, 3, 40],
+                        [546, 397, 413, 247, 328, 244, 9, 80, [
+                            [427, 286, 383, 253, 371, 205, 2, 40],
+                            [498, 345, 435, 315, 395, 330, 4, 60]
+                        ]],
+                        [546, 357, 608, 252, 678, 221, 6, 100, [
+                            [590, 293, 646, 277, 648, 271, 2, 80]
+                        ]]
+                    ]]
+                ],
+                bloom: {
+                    num: 700,
+                    width: 1080,
+                    height: 650,
+                },
+                footer: {
+                    width: 1200,
+                    height: 5,
+                    speed: 10,
+                }
+            }
+        
+            var tree = new Tree(canvas[0], width, height, opts);
+            var seed = tree.seed;
+            var foot = tree.footer;
+            var hold = 1;
+            canvas.click(function (e) {
+                var offset = canvas.offset(), x, y;
+                x = e.pageX - offset.left;
+                y = e.pageY - offset.top;
+                if (seed.hover(x, y)) {
+
+
+                    hold = 0;
+                    canvas.unbind("click");
+                    canvas.unbind("mousemove");
+                    canvas.removeClass('hand');
+                }
+            }).mousemove(function (e) {
+                var offset = canvas.offset(), x, y;
+                x = e.pageX - offset.left;
+                y = e.pageY - offset.top;
+                canvas.toggleClass('hand', seed.hover(x, y));
+            });
+
+            //种子下落进入泥土的动画
+            var seedAnimate = eval(Jscex.compile("async", function () {
+                seed.draw();
+                while (hold) {
+                    $await(Jscex.Async.sleep(10));
+                }
+                while (seed.canScale()) {
+                    seed.scale(0.95);
+                    //该操作用以阻塞当前线程
+                    $await(Jscex.Async.sleep(10));
+                    //缩小动画
+                }
+                while (seed.canMove()) {
+                    seed.move(0, 2);
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                    //种子移动到底部
+                }
+            }));
+            //大树枝条生长的动画
+            var growAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    tree.grow();
+                    
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canGrow());
+            }));
+            //开花动画
+            var flowAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    //一次开2 朵
+                    tree.flower(2);
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canFlower());
+            }));
+            //树木整体向右平移的动画
+            var moveAnimate = eval(Jscex.compile("async", function () {
+                tree.snapshot("p1", 240, 0, 610, 680);//截取屏幕
+                while (tree.move("p1", 500, 0)) {
+                    foot.draw();//重新绘制地平线，地平线不参与平移
+                    $await(Jscex.Async.sleep(10));
+                }
+                foot.draw();
+                tree.snapshot("p2", 500, 0, 610, 680);
+                // 会有闪烁不得意这样做, (＞﹏＜) ps:该注释为原作者所写
+                //将绘制好的场景作为背景，防止新绘制时出现闪烁、
+                //由于后续落花等动画每次都需要清空全屏重新绘制，会引起树主体的闪烁
+                canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+                canvas.css("background", "#ffe");
+                $await(Jscex.Async.sleep(300));
+                canvas.css("background", "none"); 
+            }));
+            //落花的动画
+            var jumpAnimate = eval(Jscex.compile("async", function () {
+                var ctx = tree.ctx;
+                //调用后在后台线程持续执行
+                while (true) {
+                    tree.ctx.clearRect(0, 0, width, height);
+                    tree.jump();
+                    foot.draw();
+                    $await(Jscex.Async.sleep(25));
+                }
+            }));
+            //动态生成文字
+            var textAnimate = eval(Jscex.compile("async", function () {
+                var together = new Date();
+                var strs = "2018-02-16 00:00:00"; //相恋时间
+                var nowTime = new Date();
+                var together = new Date(strs.replace(/-/g, "/"));
+                $("#code").show().typewriter();//打字机效果显示所有文字
+                $("#clock-box").fadeIn(500);//出现时间
+                while (true) {
+                    timeElapse(together);
+                    $await(Jscex.Async.sleep(1000));
+                }
+            }));
+            var fallflowerAnimate = eval(Jscex.compile("async", function () {
+                while (true) {
+                    tree.canfall = true;
+                    var time = random(500, 3000);
+                    $await(Jscex.Async.sleep(time));
+                }
+            }));
+
+            var runAsync = eval(Jscex.compile("async", function () {
+                $await(seedAnimate());
+                $await(growAnimate());
+                $await(flowAnimate());
+                $await(moveAnimate());
+                textAnimate().start();
+                fallflowerAnimate().start();
+                $await(jumpAnimate());
+            }));
+            runAsync().start();
+        })();</script>
+
+</body>
+</html>
