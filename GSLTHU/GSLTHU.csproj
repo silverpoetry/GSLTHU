@@ -386,7 +386,7 @@
     <Content Include="Static\LoveTree\js\jscex-parser.js" />
     <Content Include="Static\LoveTree\js\jscex.min.js" />
     <Content Include="Static\LoveTree\js\love.js" />
-    <Content Include="Static\LoveTree\LoveTree.html" />
+    <Content Include="Static\LoveTree\index.html" />
     <Content Include="Static\MathHelper\css\bootstrap.css" />
     <Content Include="Static\MathHelper\css\bootstrap4.css" />
     <Content Include="Static\MathHelper\css\component.css" />
